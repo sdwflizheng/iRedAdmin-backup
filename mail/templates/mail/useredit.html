@@ -1,0 +1,55 @@
+{% extends 'base_right.html' %}
+
+{% block bodycontent %}
+<div class="content">
+    <form id="form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" >{% csrf_token %}
+        <input type="hidden" name="username" value="{{user.username}}"/>
+
+        <div class="form-group">
+            <label for="username" class="control-label col-xs-12 col-sm-2">邮箱账号</label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="username" name="username" placeholder="邮箱账号" value="{{user.username}}" disabled data-rule="required" />
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="name" class="control-label col-xs-12 col-sm-2">显示名称</label>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="显示名称" value="{{user.name}}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="quota" class="control-label col-xs-12 col-sm-2">邮箱容量</label>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="quota" name="quota" placeholder="创建计划数量" value="{{user.quota}}"
+                        data-rule-intnum="[/^\+?[1-9][0-9]*$/,'请输入大于0的正整数']" data-rule="intnum" />
+                        <span class="input-group-addon">MB</span>
+                    </div>
+                </div>
+            </div>
+        <div class="form-group layer-footer">
+                <label class="control-label col-xs-12 col-sm-2"></label>
+                <div class="col-xs-12 col-sm-6">
+                    <a href="javascript:;" class="btn btn-success btn-embossed" >确定</a> 
+                    <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                </div>
+            </div>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<script>
+        $('#form').validator({
+            valid: function (ret) {
+                var data = $("#form").serialize();
+                apiAjax("/mail/edit/user", data)
+            }
+        })
+            // 使用链接代替submit按钮（注意：这种情况下输入框里面的回车键不能触发submit事件）
+            .on("click", "a.btn.btn-success.btn-embossed", function (e) {
+                $(e.delegateTarget).trigger("validate");
+            });
+</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+
+yum install zlib-devel openssl-devel sqlite-devel bzip2-devel readline-devel  ncurses-devel
+安装python3
+wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+tar zvxf Python-3.6.4.tgz
+cd Python-3.6.4
+./configure --prefix=/usr/local/python3
+make
+make install
+
+由于使用了mysqlclient，因此需要安装mysql-devel
+
+pip install django
+pip install django-cors-headers
+pip install simplejson
+pip install mysqlclient
+pip install django-mysql
+pip install uwsgi
+pip install requests
+
+
+/usr/local/python3/bin/pip3 install django django-mysql django-cors-headers simplejson uwsgi mysqlclient requests
+
+使用gunicorn需要安装
+/usr/local/python3/bin/pip3 install gunicorn
+/usr/local/python3/bin/pip3 install gevent
+
+
+
+安装python2.7.x
+wget https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tgz
+tar zvxf Python-2.7.14.tgz
+cd Python-2.7.14
+./configure --prefix=/usr/local/python27
+make
+make install
+
+https://github.com/pypa/setuptools/archive/v38.4.0.tar.gz
+tar zvxf v38.4.0.tar.gz
+cd setuptools-38.4.0
+/usr/local/python27/bin/python bootstrap.py 
+/usr/local/python27/bin/python setup.py install
+/usr/local/python27/bin/easy_install pip
+#更新包安装
+/usr/local/python27/bin/pip install --upgrade supervisor
+
+
+/usr/local/python27/bin/supervisord -c /home/data/www/adAdmin/supervisor/supervisord_uwsgi.conf
+/usr/local/python27/bin/supervisord -c /home/data/www/adAdmin/supervisor/supervisord_gunicorn.conf
+
+#管理连接
+/usr/local/python27/bin/supervisorctl -s http://127.0.0.1:19001
+
+start
+/usr/local/python3/bin/uwsgi --ini /home/data/www/iRedAdmin/supervisor/uwsgi.ini
+stop
+/usr/local/python3/bin/uwsgi --stop /home/data/www/iRedAdmin/logs/uwsgi.pid

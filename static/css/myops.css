@@ -1,0 +1,360 @@
+
+/*layui美化，需要iconfont.css*/
+.layui-layer-title {
+    background: #2c3e50!important;
+    color: #fff!important;
+  }
+
+/*避免出现多滚动条*/
+.layui-layer-noborder {
+    border: none!important;
+    box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3) !important;
+  }
+  .layui-layer-moves {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .layui-layer-iframe {
+    overflow: hidden!important;
+  }
+  .layui-layer-iframe .layui-layer-content {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden!important;
+    overflow: hidden;
+  }
+  /*自定义底部灰色操作区*/
+  .layui-layer-btn {
+    text-align: center!important;
+    padding: 10px!important;
+    background: #ecf0f1;
+  }
+  .layui-layer-footer {
+    padding: 8px 20px;
+    background-color: #ecf0f1;
+    height: auto;
+    text-align: inherit!important;
+  }
+  .layui-layer-btn a {
+    background-color: #95a5a6!important;
+    border-color: #95a5a6!important;
+    color: #fff!important;
+  }
+  .layui-layer-btn .layui-layer-btn0 {
+    background-color: #18bc9c!important;
+    border-color: #18bc9c!important;
+  }
+  .layui-layer-setwin {
+    top: 10px!important;
+  }
+  .layui-layer-setwin > a {
+    background: none!important;
+  }
+  .layui-layer-setwin > a cite {
+    display: none;
+  }
+  .layui-layer-setwin > a:after {
+    content: "\e625";
+    font-family: iconfont;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    position: absolute;
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+    z-index: 1;
+  }
+  .layui-layer-setwin > a:hover {
+    text-decoration: none!important;
+    background: none!important;
+  }
+  .layui-layer-setwin > a:focus {
+    text-decoration: none!important;
+  }
+  .layui-layer-setwin .layui-layer-min:after {
+    content: "\e625";
+  }
+  .layui-layer-setwin .layui-layer-max:after {
+    content: "\e623";
+  }
+  .layui-layer-setwin .layui-layer-maxmin:after {
+    content: "\e624";
+  }
+  .layui-layer-setwin .layui-layer-close1:after {
+    content: "\e626";
+  }
+  .layui-layer-setwin .layui-layer-close2,
+  .layui-layer-setwin .layui-layer-close2:hover {
+    background: url('../layer-v3.1.0/theme/default/icon.png') no-repeat -149px -31px !important;
+  }
+  .layui-layer-setwin .layui-layer-close2:after,
+  .layui-layer-setwin .layui-layer-close2:hover:after {
+    display: none;
+  }
+
+/********************************************************************************/
+/*
+ * Component: Form
+ * ---------------
+ */
+ .form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .form-control:focus {
+    border-color: #3c8dbc;
+    box-shadow: none;
+  }
+  .form-control::-moz-placeholder,
+  .form-control:-ms-input-placeholder,
+  .form-control::-webkit-input-placeholder {
+    color: #bbb;
+    opacity: 1;
+  }
+  .form-control .btn {
+    border-radius: 0;
+  }
+  select.form-control {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    background-position: right 50%;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
+  }
+  .form-group.has-success label {
+    color: #18bc9c;
+  }
+  .form-group.has-success .form-control,
+  .form-group.has-success .input-group-addon {
+    border-color: #18bc9c;
+    box-shadow: none;
+  }
+  .form-group.has-success .help-block {
+    color: #18bc9c;
+  }
+  .form-group.has-warning label {
+    color: #f39c12;
+  }
+  .form-group.has-warning .form-control,
+  .form-group.has-warning .input-group-addon {
+    border-color: #f39c12;
+    box-shadow: none;
+  }
+  .form-group.has-warning .help-block {
+    color: #f39c12;
+  }
+  .form-group.has-error label {
+    color: #e74c3c;
+  }
+  .form-group.has-error .form-control,
+  .form-group.has-error .input-group-addon {
+    border-color: #e74c3c;
+    box-shadow: none;
+  }
+  .form-group.has-error .help-block {
+    color: #e74c3c;
+  }
+  /* Input group */
+  .input-group .input-group-addon {
+    border-radius: 0;
+    border-color: #d2d6de;
+    background-color: #fff;
+  }
+  /* button groups */
+  .btn-group-vertical .btn.btn-flat:first-of-type,
+  .btn-group-vertical .btn.btn-flat:last-of-type {
+    border-radius: 0;
+  }
+  .icheck > label {
+    padding-left: 0;
+  }
+  /* support Font Awesome icons in form-control */
+  .form-control-feedback.fa {
+    line-height: 31px;
+  }
+  .input-lg + .form-control-feedback.fa,
+  .input-group-lg + .form-control-feedback.fa,
+  .form-group-lg .form-control + .form-control-feedback.fa {
+    line-height: 42px;
+  }
+  .input-sm + .form-control-feedback.fa,
+  .input-group-sm + .form-control-feedback.fa,
+  .form-group-sm .form-control + .form-control-feedback.fa {
+    line-height: 28px;
+  }
+
+/*去除bootstrap-table的边框*/
+.fixed-table-container {
+    border: none!important;
+}
+/*修复nice-validator和summernote的编辑框冲突*/
+.nice-validator .note-editor .note-editing-area .note-editable {
+display: inherit;
+}
+
+.bootstrap-table .fixed-table-toolbar .dropdown-menu {
+overflow: auto;
+}
+.bootstrap-table table tbody tr:first-child td .bs-checkbox {
+vertical-align: middle;
+}
+.bootstrap-table td.bs-checkbox {
+vertical-align: middle;
+}
+
+.box-comments {
+  background: #f7f7f7;
+}
+.box-comments .box-comment {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.box-comments .box-comment:before,
+.box-comments .box-comment:after {
+  content: " ";
+  display: table;
+}
+.box-comments .box-comment:after {
+  clear: both;
+}
+.box-comments .box-comment:last-of-type {
+  border-bottom: 0;
+}
+.box-comments .box-comment:first-of-type {
+  padding-top: 0;
+}
+.box-comments .box-comment img {
+  float: left;
+}
+.box-comments .comment-text {
+  margin-left: 40px;
+  color: #555;
+}
+.box-comments .username {
+  color: #444;
+  display: block;
+  font-weight: 600;
+}
+.box-comments .text-muted {
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/*
+ * Component: Button
+ * -----------------
+ */
+ .btn {
+  /*.border-radius(@btn-border-radius);*/
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+.btn.uppercase {
+  text-transform: uppercase;
+}
+.btn.btn-flat {
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-width: 1px;
+}
+.btn:active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.btn:focus {
+  outline: none;
+}
+.btn.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn.btn-file > input[type='file'] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+.btn-default {
+  background-color: #f4f4f4;
+  color: #444;
+  border-color: #ddd;
+}
+.btn-default:hover,
+.btn-default:active,
+.btn-default.hover {
+  background-color: #e7e7e7;
+}
+.btn-outline {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+}
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active {
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.btn-link {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn[class*='bg-']:hover {
+  -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+}
+.btn-app {
+  border-radius: 3px;
+  position: relative;
+  padding: 15px 5px;
+  margin: 0 0 10px 10px;
+  min-width: 80px;
+  height: 60px;
+  text-align: center;
+  color: #666;
+  border: 1px solid #ddd;
+  background-color: #f4f4f4;
+  font-size: 12px;
+}
+.btn-app > .fa,
+.btn-app > .glyphicon,
+.btn-app > .ion {
+  font-size: 20px;
+  display: block;
+}
+.btn-app:hover {
+  background: #f4f4f4;
+  color: #444;
+  border-color: #aaa;
+}
+.btn-app:active,
+.btn-app:focus {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.btn-app > .badge {
+  position: absolute;
+  top: -3px;
+  right: -10px;
+  font-size: 10px;
+  font-weight: 400;
+}

@@ -1,0 +1,57 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <title>iredmail管理系统</title>
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- 允许 Bootstrap 按钮或链接创建可关闭 TAB -->
+    <link href="{% static 'bootstrap-addtabs/bootstrap.addtabs.min.css' %}" rel="stylesheet" />
+    <!-- 弹出层插件 -->
+    <link href="{% static 'layer-v3.1.0/theme/default/layer.css' %}" rel="stylesheet" />
+    <!-- 消息提示插件 -->
+    <link href="{% static 'toastr-2.1.3/toastr.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <!-- 图标合集插件 -->
+    <link href="{% static 'Ionicons/css/ionicons.min.css' %}" rel="stylesheet" />
+    <!-- 动画效果插件 -->
+    <link href="{% static 'animate/animate.min.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'adminLTE/dist/css/AdminLTE.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'adminLTE/dist/css/skins/all-skins.min.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'select2/css/select2.min.css' %}" rel="stylesheet" />
+    {% block header %}{% endblock %}
+</head>
+
+{% block bodyline %}
+<body class="hold-transition skin-blue sidebar-mini">
+{% endblock %}
+
+    {% block bodycontent %}{% endblock %}
+
+    <script src="{% static 'jquery/jquery-2.2.4.js' %}"></script>
+    <!-- 弹出层插件 -->
+    <script src="{% static 'layer-v3.1.0/layer.js' %}"></script>
+    <!-- 消息提示插件 -->
+    <script src="{% static 'toastr-2.1.3/toastr.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap-addtabs/bootstrap.addtabs.js' %}"></script>
+    <!-- 滚动条插件 -->
+    <script src="{% static 'jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static 'adminLTE/dist/js/adminlte.min.js' %}"></script>
+
+    <script src="{% static 'select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'select2/js/i18n/zh-CN.js' %}"></script>
+
+    <script src="{% static 'js/myops.js' %}"></script>
+
+    {% block footer %}{% endblock %}
+
+</body>
+
+</html>

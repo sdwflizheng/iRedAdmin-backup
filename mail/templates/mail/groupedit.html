@@ -1,0 +1,80 @@
+{% extends 'base_right.html' %}
+
+{% block bodycontent %}
+    <div class="content">
+        <form id="form" class="form-horizontal form-ajax" role="form" method="POST">{% csrf_token %}
+                <input type="hidden" name="address" value="{{alias.address}}"/>
+
+            <div class="form-group">
+                <label for="address" class="control-label col-xs-12 col-sm-2">邮件组地址</label>
+                <div class="col-xs-12 col-sm-4">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="邮件组地址" disabled value="{{alias.address}}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="control-label col-xs-12 col-sm-2">显示名称</label>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="显示名称" value="{{alias.name}}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="users" class="control-label col-xs-12 col-sm-2">邮件组成员</label>
+                <div class="col-xs-12 col-sm-6">
+                    <select id="users" name="users" class="form-control" multiple="multiple" style="width: 75%">
+                        {{html_users|safe}}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group layer-footer">
+                    <label class="control-label col-xs-12 col-sm-2"></label>
+                    <div class="col-xs-12 col-sm-6">
+                        <a href="javascript:;" class="btn btn-success btn-embossed" >确定</a> 
+                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<script>
+    $('#users').select2({
+        language: "zh-CN",
+        width: "100%",
+        allowHtml: true,
+        placeholder:'请输入成员邮箱',//默认文字提示
+        allowClear: true,//允许清空
+        ajax: {
+            url: "/mail/search/user",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+              return {
+                q: params.term,
+              };
+            },
+            processResults: function (data) {
+              return {
+                results: data
+              };
+            },
+            cache: true
+        },
+        minimumInputLength: 2,
+    })
+
+    $('#form').validator({
+        valid: function (ret) {
+            var data = $("#form").serialize();
+            apiAjax("/mail/edit/group", data)
+        }
+    })
+        // 使用链接代替submit按钮（注意：这种情况下输入框里面的回车键不能触发submit事件）
+        .on("click", "a.btn.btn-success.btn-embossed", function (e) {
+            $(e.delegateTarget).trigger("validate");
+        });
+
+</script>
+{% endblock %}

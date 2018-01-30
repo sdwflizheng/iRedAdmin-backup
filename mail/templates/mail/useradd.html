@@ -1,0 +1,74 @@
+{% extends 'base_right.html' %}
+
+{% block bodycontent %}
+    <div class="content">
+        <form id="form" class="form-horizontal form-ajax" role="form" method="POST">{% csrf_token %}
+
+            <div class="form-group">
+                <label for="username" class="control-label col-xs-12 col-sm-2">邮件地址</label>
+                <div class="col-xs-12 col-sm-4">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="用户名" data-rule="required" />
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span>
+                        <select id="domain" name="domain" class="form-control" data-rule="required">
+                            {{html_domain|safe}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="password" class="control-label col-xs-12 col-sm-2">密码:</label>
+                    <div class="col-xs-12 col-sm-6">
+                        <input type="password" class="form-control" id="password" name="row[password]" placeholder="登录密码,长度6-20" data-rule="密码:required;length(6~20)" />
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label for="pwdAgain" class="control-label col-xs-12 col-sm-2">确认密码:</label>
+                    <div class="col-xs-12 col-sm-6">
+                        <input type="password" class="form-control" id="pwdAgain" name="row[pwdAgain]" placeholder="请再次填写密码" data-rule="确认密码:required;match(row[password]);" />
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-xs-12 col-sm-2">显示名称</label>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="显示名称" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="quota" class="control-label col-xs-12 col-sm-2">邮箱容量</label>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="quota" name="quota" placeholder="创建计划数量" value="1024"
+                        data-rule-intnum="[/^\+?[1-9][0-9]*$/,'请输入大于0的正整数']" data-rule="intnum" />
+                        <span class="input-group-addon">MB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group layer-footer">
+                    <label class="control-label col-xs-12 col-sm-2"></label>
+                    <div class="col-xs-12 col-sm-6">
+                        <a href="javascript:;" class="btn btn-success btn-embossed" >确定</a> 
+                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<script>
+    $('#form').validator({
+        valid: function (ret) {
+            var data = $("#form").serialize();
+            apiAjax("/mail/add/user", data)
+        }
+    })
+        // 使用链接代替submit按钮（注意：这种情况下输入框里面的回车键不能触发submit事件）
+        .on("click", "a.btn.btn-success.btn-embossed", function (e) {
+            $(e.delegateTarget).trigger("validate");
+        });
+
+</script>
+{% endblock %}

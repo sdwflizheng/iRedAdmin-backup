@@ -1,0 +1,83 @@
+{% extends 'base_right.html' %}
+
+{% block bodycontent %}
+<div class="content">
+    <form id="form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" >{% csrf_token %}
+        <input type="hidden" name="id" value="{{ id }}"/>
+        <div class="form-group">
+            <label for="name" class="control-label col-xs-12 col-sm-2">用户名:</label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="name" name="row[name]" placeholder="登录用户名" value="{{ name }}" data-rule="required" />
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="nickname" class="control-label col-xs-12 col-sm-2">姓名:</label>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="nickname" name="row[nickname]" placeholder="真实姓名" value="{{ nickname }}" data-rule="required" />
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="email" class="control-label col-xs-12 col-sm-2">邮件地址:</label>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="email" name="row[email]" placeholder="邮箱：xx@qq.com" value="{{ email }}" data-rule="required;email" />
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="mobile" class="control-label col-xs-12 col-sm-2">手机号:</label>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" class="form-control" id="mobile" name="row[mobile]" placeholder="联系电话" value="{{ mobile }}" data-rule="mobile" />
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="is_admin" class="control-label col-xs-12 col-sm-2">管理员:</label>
+            <div class="col-xs-12 col-sm-6">
+                <select class="form-control" data-rule="required" name="row[is_admin]" id="is_admin">
+                    {% if is_superuser %}
+                    <option value="0">否</option>
+                    <option value="1" selected="selected">是</option></select>
+                    {% else %}
+                    <option value="0" selected="selected">否</option>
+                    <option value="1">是</option></select>
+                    {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">账户状态:</label>
+            <div class="col-xs-12 col-sm-6">
+                {% if is_active %}
+                <label for="row[is_active]-normal"><input id="row[is_active]-normal" checked="checked" name="row[is_active]" type="radio" value="1"> 激活</label> 
+                <label for="row[is_active]-hidden"><input id="row[is_active]-hidden" name="row[is_active]" type="radio" value="0"> 锁定</label>
+                {% else %}        
+                <label for="row[is_active]-normal"><input id="row[is_active]-normal" checked="checked" name="row[is_active]" type="radio" value="1"> 激活</label> 
+                <label for="row[is_active]-hidden"><input id="row[is_active]-hidden" name="row[is_active]" type="radio" value="0"> 锁定</label>  
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group layer-footer">
+            <label class="control-label col-xs-12 col-sm-2"></label>
+            <div class="col-xs-12 col-sm-6">
+                <a href="javascript:;" class="btn btn-success btn-embossed" >确定</a> 
+                <button type="reset" class="btn btn-default btn-embossed">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<script>
+
+    $('#form').validator({
+        valid: function (ret) {
+            var data = $("#form").serialize();
+            apiAjax("/myauth/user/edit", data)
+        }
+    })
+        // 使用链接代替submit按钮（注意：这种情况下输入框里面的回车键不能触发submit事件）
+        .on("click", "a.btn.btn-success.btn-embossed", function (e) {
+            $(e.delegateTarget).trigger("validate");
+        });
+</script>
+{% endblock %}

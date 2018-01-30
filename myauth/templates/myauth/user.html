@@ -1,0 +1,134 @@
+{% extends 'base_right.html' %}
+
+{% block bodycontent %}
+
+<section class="content">
+
+            <div id="toolbar" class="toolbar">
+                <a href="javascript:;" class="btn btn-primary btn-refresh" ><i class="fa fa-refresh"></i> </a> 
+                <a href="javascript:;" id="btnadd" class="btn btn-success btn-add" ><i class="fa fa-plus"></i> 添加</a> 
+                <a href="javascript:;" id="btnedit" class="btn btn-success btn-edit" ><i class="fa fa-pencil"></i> 编辑</a> 
+                <a href="javascript:;" id="btndel" class="btn btn-danger btn-del" ><i class="fa fa-trash"></i> 禁用</a>   
+                <a href="javascript:;" id="btnpasswd" class="btn btn-success btn-passwd" ><i class="fa fa-key"></i> 修改密码</a>                     
+            </div>
+            <table id="table" class="table table-striped table-bordered table-hover" width="100%">
+            </table>
+
+</section>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+        var toolbar = $("#toolbar");
+        var table = $("#table");
+        
+        // 初始化表格
+        table.bootstrapTable({
+            url: '/myauth/user/list',
+            sortName: 'id',
+            sortOrder: 'desc',
+            cache: false,
+            sidePagination: 'server',
+            pagination: true,
+            method: 'get',
+            pageSize: 20,
+            pageList: [20, 50, 100, 200, 'All'],
+            toolbar: "#toolbar",
+            mobileResponsive: true,
+            pk: 'id', //editable插件
+            columns: [
+                [
+                    {field: 'state', checkbox: true, },
+                    {field: 'id', title: 'ID', visible: false, switchable: false},
+                    {field: 'name', title: '用户名'},
+                    {field: 'nickname', title: '姓名'},
+                    {field: 'email', title: '邮件地址'},
+                    {field: 'is_superuser', title: '是否管理员'},
+                    {field: 'last_login', title: '登录时间'},
+                    {field: 'mobile', title: '手机号'},
+                    {field: 'is_active', title: '状态'},
+                    {field: 'operate', title: '操作', formatter: function(value,row,index){
+                        var html = [];
+                        html.push('<a href="javascript:;" class="btn btn-warning btn-password btn-xs"><i class="fa fa-key"></i></a>');
+                        return html.join(' ');
+                    }},
+                ]
+            ]
+        });
+
+        // 刷新按钮事件
+        $(toolbar).on('click', '.btn-refresh', function () {
+            table.bootstrapTable('refresh');
+        });
+
+        //添加按钮事件
+        $(toolbar).on('click', '.btn-add', function () {
+            layui_show('添加','/myauth/user/add')
+        })
+
+        //编辑按钮事件
+        $(toolbar).on('click', '.btn-edit', function () {
+            var ids = selectedids(table);
+            //一次编辑一个
+            if(ids.length == 1){ 
+                var url= '/myauth/user/edit?ids=' + ids.join(",");
+                layui_show('编辑',url)
+
+            }else{
+                toastr.error('同时只允许编辑一个');
+            }  
+        });
+            // 删除按钮事件
+            $(toolbar).on('click', '.btn-del', function () {
+                var csrftoken = getCookie('csrftoken');
+                var ids = selectedids(table);
+                var data = {"ids" : ids}
+                if(ids.length >= 1){
+                    var index = layer.confirm(
+                            //'确定删除选中的 '+ids.length+' 项?', ids.length,
+                            '确定禁用选中的 '+ids.length+' 用户?',
+                            //{icon: 3, title: 'Warning', offset: 0, shadeClose: true},
+                            {icon: 3, title: '警告', shadeClose: true},
+                            function () {
+                                $.ajax({ 
+                                    url : "/myauth/user/del",
+                                    type: 'POST', 
+                                    dataType : "json", 
+                                    data: data, 
+                                    beforeSend: function(request) {
+                                        //django需要csrf验证,Forbidden (CSRF cookie not set.):
+                                        request.setRequestHeader("X-CSRFToken", csrftoken);
+                                    },
+                                    success : function(d) { 
+                                        if (d.code == 1){
+                                            toastr.success("操作成功");  
+                                            table.bootstrapTable('refresh');
+                                            layer.close(index);
+                                        }else{
+                                            toastr.error(d.msg);  
+                                        }
+                                    } 
+                                }); 
+                                
+                            }
+                    );
+                }else{
+                    toastr.warning('请选择要禁用的用户条目');
+                }
+            });
+    
+            //修改密码按钮事件
+            $(toolbar).on('click', '.btn-passwd', function () {
+                var ids = selectedids(table);
+                //一次编辑一个
+                if(ids.length == 1){
+                    var url= '/myauth/user/resetpasswd?id=' + ids.join(",");
+                    layui_show('密码修改',url,600,400)
+                }else{
+                    toastr.error('请选择一个需要重置密码的用户');
+                }
+                
+            });
+</script>
+{% endblock %}

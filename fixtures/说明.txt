@@ -1,0 +1,4 @@
+用于初始化数据目录
+
+导入
+python manage.py loaddata data.json
