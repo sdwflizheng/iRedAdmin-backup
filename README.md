@@ -1,4 +1,4 @@
-##iredAdmin
+## iredAdmin
 
     是用python3编写的iredmail后台管理平台,前端框架使用bootstrap,由于是后台管理建议浏览器使用firefox、chrome，如果使用IE建议IE10以上
 	
