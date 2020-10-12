@@ -44,7 +44,10 @@
 ## 导入管路员(可以自己创建) 用户名admin 密码123456
     #/usr/local/python3/bin/python3 manage.py loaddata data.json
 
-## 截图
+## 截图http://gitee.com/devop/iRedAdmin/raw/master/screen/2018-01-30T06-18-35.520Z.png
+http://gitee.com/devop/iRedAdmin/raw/master/screen/2018-01-30T06-19-29.650Z.png
+http://gitee.com/devop/iRedAdmin/raw/master/screen/2018-01-30T06-21-34.824Z.png
+http://gitee.com/devop/iRedAdmin/raw/master/screen/2018-01-30T06-22-17.039Z.png
 * 
 ![login](http://gitee.com/devop/iRedAdmin/raw/master/screen/2018-01-30T06-18-35.520Z.png)
 ![main](http://gitee.com/devop/iRedAdmin/raw/master/screen/2018-01-30T06-19-29.650Z.png)
